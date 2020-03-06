@@ -22,7 +22,7 @@ class Game
     startGame()
     {
         // Set Overlay Div element to not be displayed
-        document.getElementById('overlay').style.display = 'none';
+        overlay.style.display = 'none';
 
         // Call getRandomPhrase then addPhraseToDisplay method
         this.activePhrase = this.getRandomPhrase();
@@ -80,34 +80,83 @@ class Game
     };
 
     /**
+     * checkForWin method
+     * Checks to see if player has revealed all letters in active phrase
+     * @return {boolean} True if game is won, false if not won
+     */
+    checkForWin()
+    {
+        // Create variable for all letter DOM elements
+        const lettersInDom = document.querySelectorAll('ul li');
+
+        // For of loop to traverse array of elements
+        for (let char of lettersInDom)
+        {
+            // If char includes hide as a className
+            if (char.classList.value.includes('hide'))
+            {
+                return false;  
+            }
+        }
+
+        return true;
+    };
+
+    /**
      * removeLife method
-     * Removes a life from the scoreboard. Replaces one img with anothe img
+     * Removes a life from the scoreboard. Replaces one img with another img
      * and increments the missed property
      */
     removeLife()
     {
+        // Create variable for all img DOM elements
+        const lives = document.getElementsByClassName('tries');
 
+        // Change src for img
+        lives[this.missed].src = 'images/lostHeart.png';
 
-    };
+        // Increment missed
+        this.missed += 1;
 
-    /**
-     * checkForWin method
-     * Checks to see if player has revealed all letters in active phrase
-     */
-    checkForWin()
-    {
-
-
+        // If statement to determine if any lives left
+        if (this.missed === 5)
+        {
+            // Call gameOver method 
+            this.gameOver(false);
+        }
     };
 
     /**
      * gameOver method
      * Displays original start screen overlay, and updates the overlay h1 element
-     * with winning/ossing message
+     * with winning/lossing message
+     * @param {boolean} gameWon - Whether or not the user won 
      */
-    gameOver()
+    gameOver(gameWon)
     {
+        // Create variable for message DOM element 
+        let gameOverMessage = document.getElementsById('game-over-message');
 
+        // If statement to determine message to be displayed
+        if (gameWon)
+        {
+            overlay.style.display = '';
+            overlay.classList.remove('start');
+            overlay.classList.add('win');
+            overlay.style.backgroundColor = 'green';
+            gameOverMessage.textContent = `You Win!`;
+        }
+        else
+        {
+            overlay.style.display = '';
+            overlay.classList.remove('start');
+            overlay.classList.add('lose');
+            overlay.style.backgroundColor = 'red';
+            gameOverMessage.textContent = `You Lose!`;
+        }
+
+        // Reset game
+        this.reset();
 
     };
 }

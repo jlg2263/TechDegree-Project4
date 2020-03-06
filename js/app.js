@@ -6,6 +6,7 @@
  * Global variable for keys & new game object
  */
 let game;
+const overlay = document.getElementById('overlay');
 const keyButtons = document.getElementsByClassName('key');
 
 // Test 1

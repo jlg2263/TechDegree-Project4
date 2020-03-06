@@ -51,15 +51,8 @@ class Phrase
      */
     checkLetter(letter)
     {   
-        // Traverse through array to find a match on user selection
-        for (let char of this.phrase)
-        {
-            if (char === letter)
-            {
-                // Call showMatchedLetter
-                this.letter.showMatchedLetter();
-            }
-        }
+        // returns boolean value for letter that was selected
+        return this.phrase.includes(letter);     
     };
 
     /**
@@ -69,8 +62,19 @@ class Phrase
      */
     showMatchedLetter(letter)
     {
-        this.letter.style.display = '';
+        // Create variable for all letter DOM elements
+        const lettersInDom = document.querySelectorAll('ul li');
 
+        // For of loop to traverse array of elements
+        for (let char of lettersInDom)
+        {
+            // If event.target (letter) matches show letter
+            if (char.innerHTML === letter)
+            {
+                char.classList.remove('hide');
+                char.classList.add('show');   
+            }
+        }
     };
 
 }

@@ -7,6 +7,7 @@
  */
 let game;
 const overlay = document.getElementById('overlay');
+const keyButtons = document.getElementsByClassName('key');
 
 // Test 1
 //const game = new Game();
@@ -49,9 +50,13 @@ document.getElementById('btn__reset').addEventListener('click', () =>
     game.startGame();
 });
 
-document.getElementsByClassName('key').addEventListener('click', (e) =>
+// Use for loop to loop through all key buttons
+for (let i = 0; i < keyButtons.length; i++)
 {
-    // Call handleInteraction method once key is clicked
-    game.handleInteraction(e.target.value);
-});
+    keyButtons[i].addEventListener('keydown', (e) =>
+    {
+        // Call handleInteraction method once key is clicked
+        game.handleInteraction(e);
+    });
+}
 

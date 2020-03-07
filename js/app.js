@@ -7,7 +7,6 @@
  */
 let game;
 const overlay = document.getElementById('overlay');
-const keyButtons = document.getElementsByClassName('key');
 
 // Test 1
 //const game = new Game();
@@ -50,11 +49,9 @@ document.getElementById('btn__reset').addEventListener('click', () =>
     game.startGame();
 });
 
-// keyButtons.addEventListener('keydown', (e) =>
-// {
-//     // Call handleInteraction method once key is clicked
-//     game.handleInteraction(e);
-
-
-// });
+document.getElementsByClassName('key').addEventListener('click', (e) =>
+{
+    // Call handleInteraction method once key is clicked
+    game.handleInteraction(e.target.value);
+});
 

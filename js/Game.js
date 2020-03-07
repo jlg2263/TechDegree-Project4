@@ -61,9 +61,11 @@ class Game
     /**
      * handleInteraction method
      * Controls most of the game logic
+     * @param (HTMLButtonElement) button - The clicked key button element
      */
-    handleInteraction(e)
+    handleInteraction(button)
     {
+        console.log(button);
         // If phrase is active or not null
         // Iterate through the array of keys in keyButtons
         // if (this.activePhrase) 
@@ -110,10 +112,10 @@ class Game
     removeLife()
     {
         // Create variable for all img DOM elements
-        const lives = document.getElementsByClassName('tries');
+        const lives = document.querySelectorAll('li img');
 
         // Change src for img
-        lives[this.missed].src = 'images/lostHeart.png';
+        lives[this.missed].src = "images/lostHeart.png";
 
         // Increment missed
         this.missed += 1;
@@ -135,7 +137,7 @@ class Game
     gameOver(gameWon)
     {
         // Create variable for message DOM element 
-        let gameOverMessage = document.getElementsById('game-over-message');
+        let gameOverMessage = document.getElementById('game-over-message');
 
         // If statement to determine message to be displayed
         if (gameWon)
@@ -152,7 +154,7 @@ class Game
             overlay.classList.remove('start');
             overlay.classList.add('lose');
             overlay.style.backgroundColor = 'red';
-            gameOverMessage.textContent = `You Lose!`;
+            gameOverMessage.textContent = `Sorry, You Lose! Try Again.`;
         }
 
         // Reset game

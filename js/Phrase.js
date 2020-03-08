@@ -17,7 +17,10 @@ class Phrase
      * Adds letter placeholders to the display when game starts
      */
     addPhraseToDisplay()
-    {        
+    {   
+        // Create variable for ul DOM element
+        const ulPhrase = document.querySelector('ul');
+
         // Use for of loop to traverse array
         for (let char of this.phrase)
         {

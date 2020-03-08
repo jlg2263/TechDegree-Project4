@@ -119,6 +119,9 @@ class Game
      */
     removeLife()
     {
+        // Create variable for all img DOM elements
+        const lives = document.querySelectorAll('li img');
+
         // Change src for img
         lives[this.missed].src = "images/lostHeart.png";
 
@@ -172,12 +175,9 @@ class Game
      */
     reset()
     {
-        // // Use for of loop to traverse array
-        // for (let char of this.activePhrase)
-        // {
-        //     // Remove all li elements from Phrase ul element
-        //     ulPhrase.removeChild(liChar[char]);
-        // }
+        // Create local variables for DOM elements
+        const ulPhrase = document.querySelector('ul');
+        const lives = document.querySelectorAll('li img');
 
         // Re-enable all keybuttons
         // Use for loop to loop through all key buttons
@@ -189,10 +189,6 @@ class Game
             keyButtons[i].classList.add('key');
         }
 
-        // Iterate through array Change src for img
-        for (let i = 0; i < lives.length; i++)
-        {
-            lives[i].src = "images/liveHeart.png";
-        }
+        // 
     }
 }

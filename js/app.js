@@ -53,10 +53,10 @@ document.getElementById('btn__reset').addEventListener('click', () =>
 // Use for loop to loop through all key buttons
 for (let i = 0; i < keyButtons.length; i++)
 {
-    keyButtons[i].addEventListener('keydown', (e) =>
+    keyButtons[i].addEventListener('click', (e) =>
     {
         // Call handleInteraction method once key is clicked
-        game.handleInteraction(e);
+        game.handleInteraction(e.target);
     });
 }
 

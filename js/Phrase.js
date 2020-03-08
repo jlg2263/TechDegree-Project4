@@ -69,7 +69,7 @@ class Phrase
         for (let char of lettersInDom)
         {
             // If event.target (letter) matches show letter
-            if (char.innerHTML === letter)
+            if (char.textContent === letter)
             {
                 char.classList.remove('hide');
                 char.classList.add('show');   

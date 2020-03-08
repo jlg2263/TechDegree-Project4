@@ -65,20 +65,28 @@ class Game
      */
     handleInteraction(button)
     {
-        console.log(button);
-        // If phrase is active or not null
-        // Iterate through the array of keys in keyButtons
-        // if (this.activePhrase) 
-        // {
-        //     for (let key of keyButtons)
-        //     {
-        //         if (e.key ===)
-        //         {
-        //             this.phrases.activePhrase.checkLetter();
-        //         }
-        //     }
-        // }
+        // Disable selected letter's onscreen keyboard button
+        button.disabled = true;
 
+        // If selected letter/key button is not included in phrase
+        // add wrong css class and call removeLife method...
+        // Otherwise call the showMatchedLetter method if its a match
+        if (this.activePhrase.checkLetter(button.textContent))
+        {
+            button.setAttribute('class', 'chosen');
+            this.activePhrase.showMatchedLetter(button.textContent);
+            
+            // If checkForWin returns true call gameOver method
+            if (this.checkForWin())
+            {
+                this.gameOver(true);
+            }
+        }
+        else
+        {
+            button.setAttribute('class', 'wrong');
+            this.removeLife();
+        }
     };
 
     /**
@@ -146,7 +154,7 @@ class Game
             overlay.classList.remove('start');
             overlay.classList.add('win');
             overlay.style.backgroundColor = 'green';
-            gameOverMessage.textContent = `You Win!`;
+            gameOverMessage.textContent = `You Win! Great Job!`;
         }
         else
         {

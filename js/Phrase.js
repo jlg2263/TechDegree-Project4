@@ -18,9 +18,6 @@ class Phrase
      */
     addPhraseToDisplay()
     {        
-        // Create local variable for DOM object
-        const ulPhrase = document.querySelector('ul');
-        
         // Use for of loop to traverse array
         for (let char of this.phrase)
         {

@@ -41,7 +41,7 @@ class Game
                          new Phrase(`Toto I have a feeling we are not in Kansas anymore`),
                          new Phrase(`I will be back`),
                          new Phrase(`Love means never having to say you are sorry`),
-                         new Phrase(`We do not need no sticking badges`)
+                         new Phrase(`We do not need no stinking badges`)
                         ];
         
         return phrases;
@@ -119,9 +119,6 @@ class Game
      */
     removeLife()
     {
-        // Create variable for all img DOM elements
-        const lives = document.querySelectorAll('li img');
-
         // Change src for img
         lives[this.missed].src = "images/lostHeart.png";
 
@@ -165,8 +162,37 @@ class Game
             gameOverMessage.textContent = `Sorry, You Lose! Try Again.`;
         }
 
-        // Reset game
+        // Call Reset game
         this.reset();
-
     };
+
+    /**
+     * reset method
+     * Resets the gameboard between games
+     */
+    reset()
+    {
+        // // Use for of loop to traverse array
+        // for (let char of this.activePhrase)
+        // {
+        //     // Remove all li elements from Phrase ul element
+        //     ulPhrase.removeChild(liChar[char]);
+        // }
+
+        // Re-enable all keybuttons
+        // Use for loop to loop through all key buttons
+        for (let i = 0; i < keyButtons.length; i++)
+        {
+            keyButtons[i].disabled = false;
+            keyButtons[i].classList.remove('chosen');
+            keyButtons[i].classList.remove('wrong');
+            keyButtons[i].classList.add('key');
+        }
+
+        // Iterate through array Change src for img
+        for (let i = 0; i < lives.length; i++)
+        {
+            lives[i].src = "images/liveHeart.png";
+        }
+    }
 }

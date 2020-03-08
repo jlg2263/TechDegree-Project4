@@ -3,11 +3,15 @@
  * app.js */
 
 /**
- * Global variable for keys & new game object
+ * Global variable for keys, new game object
+ * and for ul for list elements for letters and images
  */
 let game;
 const overlay = document.getElementById('overlay');
 const keyButtons = document.getElementsByClassName('key');
+const ulPhrase = document.querySelector('ul');
+const lives = document.querySelectorAll('li img');
+
 
 // Test 1
 //const game = new Game();

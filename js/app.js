@@ -7,36 +7,7 @@
  */
 let game;
 const overlay = document.getElementById('overlay');
-const keyButtons = document.getElementsByClassName('key');
-
-// Test 1
-//const game = new Game();
-// game.phrases.forEach((phrase, index) =>
-// {
-//     console.log(`Phrase ${index} - phrase: ${phrase.phrase}`);
-
-// });
-
-// Test 2
-// const logPhrase = (phrase) =>
-// {
-//     console.log(`Phrase - phrase: `, phrase.phrase);
-// }
-// const game = new Game();
-
-// logPhrase(game.getRandomPhrase());
-// logPhrase(game.getRandomPhrase());
-// logPhrase(game.getRandomPhrase());
-// logPhrase(game.getRandomPhrase());
-
-// Test 3
-// const game = new Game();
-// game.getRandomPhrase().addPhraseToDisplay();
-
-// Test 4
-// const game = new Game();
-// game.startGame();
-// console.log(`Active Phrase - phrase: ${game.activePhrase.phrase}`);
+const keyButtons = document.querySelectorAll('.key');
 
 /**
  * Event Listener for start button & keyboard button/s
@@ -60,3 +31,18 @@ for (let i = 0; i < keyButtons.length; i++)
     });
 }
 
+document.addEventListener('keyup', (e)=>
+{
+    // If key pressed is between **Research from MDN webdocs**
+    if (e.keyCode >= 65 && e.keyCode <= 90)
+    {
+        for (let char of keyButtons)
+        {
+            if (char.textContent === e.key)
+            {
+                // Call handleInteraction method once key is clicked
+                game.handleInteraction(char);
+            }
+        }
+    }   
+});

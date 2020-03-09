@@ -176,8 +176,15 @@ class Game
     reset()
     {
         // Create local variables for DOM elements
-        const ulPhrase = document.querySelector('ul');
-        const lives = document.querySelectorAll('li img');
+        let lettersInDom = document.querySelectorAll('ul li');
+        let lives = document.querySelectorAll('li img');
+        this.missed = 0;
+
+        // Remove all li elements from Phrase ul element
+        for (let i = 0; i < lettersInDom.length; i++)
+        {  
+           lettersInDom[i].remove(); 
+        }
 
         // Re-enable all keybuttons
         // Use for loop to loop through all key buttons
@@ -189,6 +196,10 @@ class Game
             keyButtons[i].classList.add('key');
         }
 
-        // 
+        // Reset all heart images in scoreboard 
+        for (let i = 0; i < lives.length; i++)
+        {
+            lives[i].src = "images/liveHeart.png";
+        } 
     }
 }
